@@ -1,0 +1,35 @@
+-- This file has been generated from package.yaml by hpack version 0.20.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 84e644d06e0df65b097b197244f7ca8599a4ae98fa9f7e9e5200c90afe0f6f6a
+
+name:           strain
+version:        0.1.0.3
+build-type:     Simple
+cabal-version:  >= 1.10
+
+library
+  hs-source-dirs:
+      src
+  ghc-options: -Wall
+  build-depends:
+      base
+  exposed-modules:
+      Strain
+  other-modules:
+      Paths_strain
+  default-language: Haskell2010
+
+test-suite test
+  type: exitcode-stdio-1.0
+  main-is: Tests.hs
+  hs-source-dirs:
+      test
+  build-depends:
+      base
+    , hspec
+    , strain
+  other-modules:
+      Paths_strain
+  default-language: Haskell2010
