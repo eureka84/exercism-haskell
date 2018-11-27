@@ -12,10 +12,10 @@ splitCamelCase word = loop word [] []
         loop (x:xs) curr res            = loop xs (curr++[x]) res
 
 separateWords :: String -> [String]
-separateWords phrase =  (\x ->  not(null x)) `filter` (splitOneOf " -," phrase)
+separateWords phrase = filter (\x ->  not(null x)) (splitOneOf " -," phrase)
 
 splitInput :: String -> [String]
-splitInput input = concat (splitCamelCase `map` (separateWords input))
+splitInput input = concat (map splitCamelCase (separateWords input))
 
 abbreviate :: String -> String
-abbreviate input = (toUpper.head) `map` (splitInput input)
+abbreviate input = map (toUpper . head) (splitInput input)
