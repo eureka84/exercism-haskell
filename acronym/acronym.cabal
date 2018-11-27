@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 3a16ea9690aec1f2662ac2c600d9ffcbb637417abbbe29557f67a2301cf492f3
+-- hash: 5eeaf04b69b06ecb9c03cb971f638c3a6687d155dadb7f6145c390f159175a1e
 
 name:           acronym
 version:        1.6.0.9
@@ -15,6 +15,7 @@ library
   ghc-options: -Wall
   build-depends:
       base
+    , split
   exposed-modules:
       Acronym
   other-modules:
@@ -30,6 +31,7 @@ test-suite test
       acronym
     , base
     , hspec
+    , split
   other-modules:
       Paths_acronym
   default-language: Haskell2010

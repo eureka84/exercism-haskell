@@ -1,19 +1,21 @@
 module Acronym (abbreviate) where
 
 import Data.Char
+import Data.List.Split
 
 splitCamelCase :: String -> [String]
 splitCamelCase word = loop word [] []
-  where loop [] curr res                  = res++[curr]
-        loop (x:xs) curr res | isUpper x  = case curr of [] -> loop xs [x] res
-                                                         s  -> loop xs [x] (res++[s])
-        loop (x:xs) curr res              = loop xs (curr++[x]) res
+  where loop [] curr res                = res++[curr]
+        loop (x:xs) [] res | isUpper x  = loop xs [x] res
+        loop (x:xs) curr res | isUpper x && isLower (last curr)
+                                        = loop xs [x] (res++[curr])
+        loop (x:xs) curr res            = loop xs (curr++[x]) res
 
-split :: String -> [String]
-split input = concat (splitCamelCase `map` (words input))
+separateWords :: String -> [String]
+separateWords phrase =  (\x ->  not(null x)) `filter` (splitOneOf " -," phrase)
 
-firstLetterCapitalized :: String -> Char
-firstLetterCapitalized word = toUpper(head word)
+splitInput :: String -> [String]
+splitInput input = concat (splitCamelCase `map` (separateWords input))
 
 abbreviate :: String -> String
-abbreviate input = firstLetterCapitalized `map` (split input)
+abbreviate input = (toUpper.head) `map` (splitInput input)

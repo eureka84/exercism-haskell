@@ -3,6 +3,7 @@ version: 1.6.0.9
 
 dependencies:
   - base
+  - split
 
 library:
   exposed-modules: Acronym
