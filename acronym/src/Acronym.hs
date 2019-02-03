@@ -5,13 +5,13 @@ import Data.List.Split
 
 splitCamelCase :: String -> [String]
 splitCamelCase word = loop word [] []
-  where loop remaining curr result = case remaining of
-      []                           -> result++[curr]
-      (first:rest) | isUpper first -> case curr of
-                                        []                    -> loop rest [first] result
-                                        s | isLower (last s)  -> loop rest [first] (result++[s])
-                                        _                     -> loop rest (curr++[first]) result
-      (first:rest)                 -> loop rest (curr++[first]) result
+  where loop remaining curr res = case remaining of
+          []                  -> res++[curr]
+          (x:xs) | isUpper x  -> case curr of
+                                    []                    -> loop xs [x] res
+                                    s | isLower (last s)  -> loop xs [x] (res++[s])
+                                    _                     -> loop xs (curr++[x]) res
+          (x:xs)              -> loop xs (curr++[x]) res
 
 separateWords :: String -> [String]
 separateWords phrase = filter (not . null) (splitOneOf " -," phrase)
