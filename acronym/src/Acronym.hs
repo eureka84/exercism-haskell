@@ -14,10 +14,10 @@ splitCamelCase word = loop word [] []
           (x:xs)              -> loop xs (curr++[x]) res
 
 separateWords :: String -> [String]
-separateWords phrase = filter (not . null) (splitOneOf " -," phrase)
+separateWords = filter (not . null) .  splitOneOf " -,"
 
 splitInput :: String -> [String]
-splitInput input = concat $ map splitCamelCase $ separateWords input
+splitInput = concat . map splitCamelCase . separateWords
 
 abbreviate :: String -> String
-abbreviate input = map (toUpper . head) (splitInput input)
+abbreviate = map (toUpper . head) . splitInput
