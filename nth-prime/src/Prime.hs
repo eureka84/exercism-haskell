@@ -10,7 +10,7 @@ primes = filter isPrime [2..]
 isPrime :: Integer -> Bool
 isPrime 2 = True
 isPrime 3 = True
-isPrime n = length (filter dividesN [2..intSqrtN]) == 0
+isPrime n = not $ any dividesN [2..intSqrtN]
   where dividesN x = n `mod` x == 0
         intSqrtN = truncate sqrtN
         sqrtN :: Double
