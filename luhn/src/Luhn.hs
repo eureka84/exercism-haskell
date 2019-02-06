@@ -12,9 +12,9 @@ isValid' [] = False
 isValid' [_] = False
 isValid' xs = (checkSum `mod` 10) == 0
   where
-    checkSum = sum $ map (\(index, c) -> maybeDouble index c) $ indexed $ reverse xsDigits
+    checkSum = sum $ map (\(index, c) -> maybeDoubleBy index c) $ indexed $ reverse xsDigits
     xsDigits = map digitToInt xs
-    maybeDouble index digit
+    maybeDoubleBy index digit
       | index `mod` 2 == 0 = digit
       | otherwise = if (double > 9) then double - 9 else double
           where double = 2 * digit
