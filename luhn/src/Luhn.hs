@@ -4,9 +4,9 @@ import Data.Char
 import Data.List.Index
 
 isValid :: String -> Bool
-isValid xs = isValid' filtered
+isValid xs = isValid' withoutSpaces
   where 
-    filtered = filter (\x -> x /= ' ') xs
+    withoutSpaces = filter (\x -> x /= ' ') xs
 
 isValid' :: String -> Bool
 isValid' []  = False
