@@ -5,8 +5,8 @@ import Data.List.Index
 
 isValid :: String -> Bool
 isValid xs = isValid' withoutSpaces
-  where 
-    withoutSpaces = filter (\x -> x /= ' ') xs
+             where
+               withoutSpaces = filter (\x -> x /= ' ') xs
 
 isValid' :: String -> Bool
 isValid' []  = False
@@ -18,7 +18,7 @@ isValid' xs  = (checkSum `mod` 10) == 0
     maybeDouble index digit
       | index `mod` 2 == 0 = digit
       | otherwise          = if (double > 9) then double - 9 else double
-          where 
-            double = 2 * digit 
+                             where
+                               double = 2 * digit
 
 
