@@ -13,12 +13,17 @@ isValid' []  = False
 isValid' [_] = False
 isValid' xs  = (checkSum `mod` 10) == 0
   where
-    checkSum = sum $ imap maybeDouble $ reverse xsDigits
+    checkSum = sum $ imap doubleEverySecondDigit $ reverse xsDigits
     xsDigits = map digitToInt xs
-    maybeDouble index digit
+    doubleEverySecondDigit index digit
       | index `mod` 2 == 0 = digit
-      | otherwise          = if (double > 9) then double - 9 else double
-                             where
-                               double = 2 * digit
+      | otherwise          = double digit
+
+double :: Int -> Int
+double n
+  | nDoubled > 9  = nDoubled - 9
+  | otherwise     = nDoubled
+  where
+    nDoubled = 2 * n
 
 
