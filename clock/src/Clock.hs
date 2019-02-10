@@ -13,14 +13,16 @@ fromHourMin hour min
   | hour < 0         = fromHourMin (24 + hour) min
   | otherwise        = Clock hour min
 
-toString :: Clock -> String
-toString (Clock h m) = (format h) ++ ":" ++ (format m)
-  where
-    format     = leftPad . show
-    leftPad xs = case xs of
-                      [_]   -> "0" ++ xs
-                      xs    -> xs
+instance Show Clock where
+  show (Clock h m) = (format h) ++ ":" ++ (format m)
+                       where
+                         format     = leftPad . show
+                         leftPad xs = case xs of
+                                           [_]   -> "0" ++ xs
+                                           xs    -> xs
 
+toString :: Clock -> String
+toString = show
 
 addDelta :: Int -> Int -> Clock -> Clock
 addDelta hour min (Clock h m) = fromHourMin (hour + h) (min + m)
