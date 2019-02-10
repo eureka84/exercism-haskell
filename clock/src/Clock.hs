@@ -1,7 +1,7 @@
 module Clock (addDelta, fromHourMin, toString) where
 
 data Clock = Clock {
-   hour :: Int,
+   hours :: Int,
    minutes :: Int
 } deriving (Eq)
 
@@ -14,12 +14,12 @@ fromHourMin hour min
   | otherwise        = Clock hour min
 
 instance Show Clock where
-  show (Clock h m) = (format h) ++ ":" ++ (format m)
-                       where
-                         format     = leftPad . show
-                         leftPad xs = case xs of
-                                           [_]   -> "0" ++ xs
-                                           xs    -> xs
+  show c = (format $ hours c) ++ ":" ++ (format $ minutes c)
+           where
+             format     = leftPad . show
+             leftPad xs = case xs of
+                               [_]   -> "0" ++ xs
+                               xs    -> xs
 
 toString :: Clock -> String
 toString = show
