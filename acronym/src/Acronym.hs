@@ -9,7 +9,7 @@ splitCamelCase word
  | all isLower word = [word]
  | all isUpper word = [word]
  | otherwise        = map (\(f, s) -> f ++ s) $
-                      filter (\(f,_) -> length f == 1) $
+                      filter (\(f,_) -> all isUpper f) $
                       zip (take (length grouped - 1) grouped) (drop 1 grouped)
   where
     grouped = groupBy (\x y -> isLower x && isLower y) $ filter isAlpha word
