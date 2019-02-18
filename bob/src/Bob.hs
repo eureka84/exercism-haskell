@@ -1,6 +1,7 @@
 module Bob (responseFor) where
 
 import Data.Char
+import Data.List
 
 responseFor :: String -> String
 responseFor xs
@@ -12,7 +13,7 @@ responseFor xs
   where
     isShouted     = (not . null) onlyLetters && all isUpper onlyLetters
     onlyLetters   = filter isAlpha xs
-    isAQuestion   = (== '?') $ last withoutSpaces
+    isAQuestion   = "?" `isSuffixOf` withoutSpaces
     isSilence     = null withoutSpaces
     withoutSpaces = filter (not . isSpace) xs
 
