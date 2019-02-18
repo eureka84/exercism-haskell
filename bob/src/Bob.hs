@@ -3,7 +3,6 @@ module Bob (responseFor) where
 import Data.Char
 
 responseFor :: String -> String
-responseFor []  = "Fine. Be that way!"
 responseFor xs
   | isSilence                = "Fine. Be that way!"
   | isShouted && isAQuestion = "Calm down, I know what I'm doing!"
