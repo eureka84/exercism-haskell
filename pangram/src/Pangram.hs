@@ -6,8 +6,8 @@ import Data.List
 
 -- working for infinite strings
 isPangram :: String -> Bool
-isPangram = (not . null) . filter ifPangram  . map toCharactersSet . inits
+isPangram = any ifPangram  . map toCharactersSet . inits
   where
-    ifPangram xs = (Set.isSubsetOf alphabet  xs) && (Set.isSubsetOf xs alphabet)
+    ifPangram xs = alphabet == xs
     alphabet = Set.fromList ['a'..'z']
     toCharactersSet = Set.fromList . map toLower . filter isAlpha
